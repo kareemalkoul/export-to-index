@@ -1,4 +1,5 @@
 import * as path from 'path'
+import * as fs from 'fs'
 import * as vscode from 'vscode'
 import {
   fileIsOpened,
@@ -69,6 +70,46 @@ export const addCurrentFileExportationToIndex = () => {
 
     const exportationLine = getExportationLine(filePath)
     writeLineAndSort(indexFilePath, exportationLine)
+  } catch (err) {
+    if (err instanceof ApplicationError) {
+      vscode.window.showErrorMessage(err.message)
+      return
+    }
+
+    throw err
+  }
+}
+
+export const addCurrentFolderExportationToIndex = () => {
+  try {
+    const filePath = getFilePath()
+
+    if (!filePath.match(/\.[jt]sx?$/)) {
+      throw new ApplicationError('The file is not JavaScipt or TypeScript.')
+    }
+
+    const indexFilePath = getIndexPath(filePath)
+
+    if (filePath === indexFilePath) {
+      throw new ApplicationError('The file is the index file itself.')
+    }
+
+    createFileIfNotExists(indexFilePath)
+    const pathfolder = path.dirname(filePath)
+
+    let lines = ''
+    const files = fs.readdirSync(pathfolder)
+    console.log(
+      '🚀 ~ file: add-current-file-exportation-to-index.ts:107 ~ addCurrentFolderExportationToIndex ~ files',
+      files,
+    )
+
+    for (const filePath of files) {
+      const exportationLine = getExportationLine(filePath)
+      lines += exportationLine + '\n'
+    }
+
+    writeLineAndSort(indexFilePath, lines)
   } catch (err) {
     if (err instanceof ApplicationError) {
       vscode.window.showErrorMessage(err.message)

@@ -1,8 +1,8 @@
-# create-index
+# export-to-index
 
 ## Features
 
-![Demo](https://github.com/tsugitta/create-index/blob/master/screenshots/usage.gif)
+![Demo](https://github.com/kareemalkoul/export-to-index/blob/master/screenshots/usage.gif)
 
 by calling the command,
 
@@ -19,4 +19,4 @@ Nothing.
 
 ## source
 
-https://github.com/tsugitta/create-index
+https://github.com/kareemalkoul/export-to-index

@@ -1,12 +1,12 @@
 {
-  "name": "create-index",
-  "displayName": "create-index",
+  "name": "export-to-index",
+  "displayName": "export-to-index",
   "description": "Create './index.ts' file that exports the file included in the directory.",
   "version": "0.1.5",
-  "publisher": "tsugitta",
+  "publisher": "kareemalkoul",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tsugitta/create-index.git"
+    "url": "https://github.com/kareemalkoul/export-to-index.git"
   },
   "engines": {
     "vscode": "^1.12.0"
@@ -15,7 +15,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.addCurrentFileExportationToIndex"
+    "onCommand:extension.addCurrentFileExportationToIndex",
+    "onCommand:extension.addCurrentFolderExportationToIndex"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -23,6 +24,10 @@
       {
         "command": "extension.addCurrentFileExportationToIndex",
         "title": "Add export declaration of current file to index.js or index.ts"
+      },
+      {
+        "command": "extension.addCurrentFolderExportationToIndex",
+        "title": "Add export declaration of current folder to index.js or index.ts"
       }
     ]
   },
@@ -35,7 +40,7 @@
   "devDependencies": {
     "@types/mkdirp": "^0.5.2",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.15",
+    "@types/node": "^10.17.60",
     "mkdirp": "^0.5.1",
     "mocha": "^5.2.0",
     "prettier": "^1.15.3",
