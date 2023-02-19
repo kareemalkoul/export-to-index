@@ -2,7 +2,7 @@
   "name": "export-folder-to-index",
   "displayName": "export-folder-to-index",
   "description": "Create './index.ts' file that exports the file included in the directory.",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "publisher": "kareemalkoul",
   "repository": {
     "type": "git",
@@ -15,21 +15,26 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.addCurrentFileExportationToIndex",
-    "onCommand:extension.addCurrentFolderExportationToIndex"
+    "*"
   ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.addCurrentFileExportationToIndex",
-        "title": "Add export declaration of current file to index.js or index.ts"
-      },
-      {
         "command": "extension.addCurrentFolderExportationToIndex",
-        "title": "Add export declaration of current folder to index.js or index.ts"
+        "title": "Export: export folder to index",
+        "icon": "$(history)"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.addCurrentFolderExportationToIndex",
+          "group": "z_commands",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",

@@ -29,7 +29,7 @@ export const getLines = (filePath: string): string[] => {
 }
 
 export const writeFile = (filePath: string, data: string): void => {
-  fs.writeFileSync(filePath, data)
+  fs.writeFileSync(filePath, data, { flag: 'w' })
 }
 
 export class FileAlreadyExistsError extends ApplicationError {}

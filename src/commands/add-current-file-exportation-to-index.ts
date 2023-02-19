@@ -26,10 +26,8 @@ const getFilePath = (): string => {
   return getCurrentFilePath()
 }
 
-const getIndexPath = (filePath: string): string => {
-  const dirPath = path.dirname(filePath)
-  const extension = getExtension(filePath).replace('x', '') // jsx -> js
-  return path.join(dirPath, `index.${extension}`)
+const getIndexPath = (dirPath: string): string => {
+  return path.join(dirPath, `index.ts`)
 }
 
 const getExportationLine = (filePath: string): string => {
@@ -40,16 +38,7 @@ const getExportationLine = (filePath: string): string => {
 }
 
 const writeLineAndSort = (filePath: string, line: string): void => {
-  const lines = getLines(filePath).filter(l => l !== '')
-
-  if (!lines.includes(line)) {
-    lines.push(line)
-  }
-
-  lines.sort()
-  const written = `${lines.join('\n')}\n`
-
-  writeFile(filePath, written)
+  writeFile(filePath, line)
 }
 
 export const addCurrentFileExportationToIndex = () => {
@@ -80,31 +69,16 @@ export const addCurrentFileExportationToIndex = () => {
   }
 }
 
-export const addCurrentFolderExportationToIndex = () => {
+export const addCurrentFolderExportationToIndex = (folderpath: string) => {
   try {
-    const filePath = getFilePath()
-
-    if (!filePath.match(/\.[jt]sx?$/)) {
-      throw new ApplicationError('The file is not JavaScipt or TypeScript.')
-    }
-
-    const indexFilePath = getIndexPath(filePath)
-
-    if (filePath === indexFilePath) {
-      throw new ApplicationError('The file is the index file itself.')
-    }
-
+    const indexFilePath = getIndexPath(folderpath)
     createFileIfNotExists(indexFilePath)
-    const pathfolder = path.dirname(filePath)
 
     let lines = ''
-    const files = fs.readdirSync(pathfolder)
-    console.log(
-      '🚀 ~ file: add-current-file-exportation-to-index.ts:107 ~ addCurrentFolderExportationToIndex ~ files',
-      files,
-    )
+    const files = fs.readdirSync(folderpath)
 
     for (const filePath of files) {
+      if (filePath == 'index.ts') continue
       const exportationLine = getExportationLine(filePath)
       lines += exportationLine + '\n'
     }
