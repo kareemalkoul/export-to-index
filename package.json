@@ -1,12 +1,12 @@
 {
-  "name": "export-to-index",
-  "displayName": "export-to-index",
+  "name": "export-folder-to-index",
+  "displayName": "export-folder-to-index",
   "description": "Create './index.ts' file that exports the file included in the directory.",
   "version": "0.1.5",
   "publisher": "kareemalkoul",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kareemalkoul/export-to-index.git"
+    "url": "https://github.com/kareemalkoul/export-folder-to-index.git"
   },
   "engines": {
     "vscode": "^1.12.0"

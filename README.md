@@ -1,8 +1,8 @@
-# export-to-index
+# export-folder-to-index
 
 ## Features
 
-![Demo](https://github.com/kareemalkoul/export-to-index/blob/master/screenshots/usage.gif)
+![Demo](https://github.com/kareemalkoul/export-folder-to-index/blob/master/screenshots/usage.gif)
 
 by calling the command,
 
@@ -19,4 +19,4 @@ Nothing.
 
 ## source
 
-https://github.com/kareemalkoul/export-to-index
+https://github.com/kareemalkoul/export-folder-to-index
